@@ -10,3 +10,8 @@
 1. notify.py Line notifyの機能を使い、Lineに通知を送ることができる。これをジョブ実行の後に &&でつけることで、ジョブの終了をLineで通知する。
     https://qiita.com/aoyahashizume/items/13848b013daa18f6461b より
 1. wtspatially.py　数値モデルに与える海面冷却の空間分布を図示する。
+1. calang.f90 数値モデルの出力結果を加工する。
+1. fr.bash 加工された出力結果をGMTを使ってベクトル図にする。
+1. japanmap.bash GMTで日本地図を描く。
+1. avesample.f JRA55の風のデータを月平均データに直す。
+1. loop.bash JRA55の風のデータをベクトル図にし、地形データをのせる。
