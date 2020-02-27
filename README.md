@@ -8,5 +8,5 @@
 1. frddiff.py 海面冷却の強い条件を与えたモデルと海面冷却が平均的なモデルの1層目の層厚の差の分布図を描く。
 1. pomtest.py 数値モデルに正しく条件が与えられているか確認するため、出力データを図示する。
 1. notify.py Line notifyの機能を使い、Lineに通知を送ることができる。これをジョブ実行の後に &&でつけることで、ジョブの終了をLineで通知する。
-　1. https://qiita.com/aoyahashizume/items/13848b013daa18f6461bより
+  1. https://qiita.com/aoyahashizume/items/13848b013daa18f6461bより
 1. wtspatially.py　数値モデルに与える海面冷却の空間分布を図示する。
