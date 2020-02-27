@@ -52,7 +52,6 @@ xyz2grd $elbfile2 -G$grdfile6 -I1 -R$region
 xyz2grd $elbfile3 -G$grdfile7 -I1 -R$region
 xyz2grd $elbfile4 -G$grdfile8 -I1 -R$region
 #
-#
 gmt grdimage $grdfile1 -J$proj -Crb.cpt -B$frame -Y13 -K -V > $psfile1
 gmt psxy $tmpfile1 -R$region -J$proj -Sv$vector -Gblack -K -V -O >> $psfile1
 #gmt pstext $samplefile2 -R$region -J$proj -N -K -V -O >> $psfile1
