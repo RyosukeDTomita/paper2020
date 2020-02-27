@@ -1,4 +1,4 @@
-#pom test
+#pomtest
 #import module
 import os
 import sys
