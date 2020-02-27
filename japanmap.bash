@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#create japan map
 #parameter setting
 region=128/143/34/46
 proj=M15
