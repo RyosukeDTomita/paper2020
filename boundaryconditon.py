@@ -25,7 +25,6 @@ WB = (y1sum - WA*sinsum)/12
 print(WA,WB) 
 
 #plot
-#plt.style.use('ggplot')
 fig = plt.figure(figsize = (8,5)) ##
 ax = fig.add_subplot(111)
 plt.rcParams['font.family'] = 'Times New Roman' # font familyの設定
@@ -59,7 +58,7 @@ ax.legend(ncol=2, bbox_to_anchor=(0., 1.02, 1., 0.102), loc=3) #ncolで同じ行
 #plt.show()
 plt.savefig('sv2')
 ###############################################################################
-
+#Net heat flux
 #Setting for graph
 fig = plt.figure(figsize = (11,7)) ##
 ax = fig.add_subplot(111)
@@ -110,7 +109,7 @@ ax.legend(fontsize=15)
 #print(os.getcwd())
 plt.savefig('wtsurf2')
 ###############################################################################
-
+#Tsushima Strait temperature
 #Setting for graph
 fig = plt.figure(figsize = (8,5)) ##
 ax = fig.add_subplot(111)
