@@ -56,12 +56,12 @@ ax.set_xlabel(r"$Month$") ## #斜体
 ax.set_ylabel(r"$Volume transport(Sv)$") ## 
 ax.set_xticks(np.linspace(1, 12,12)) ## #グリット線の間隔
 ax.legend(ncol=2, bbox_to_anchor=(0., 1.02, 1., 0.102), loc=3) #ncolで同じ行に置く凡例の数　(内は左からx,yの位置,横x縦の箱)
-plt.show()
-#plt.savefig('sv2')
+#plt.show()
+plt.savefig('sv2')
 ###############################################################################
 
 #Setting for graph
-fig = plt.figure(figsize = (9.6,6)) ##
+fig = plt.figure(figsize = (11,7)) ##
 ax = fig.add_subplot(111)
 plt.rcParams['font.family'] = 'Times New Roman' # font familyの設定
 plt.rcParams['mathtext.fontset'] = 'stix' # math fontの設定
@@ -106,9 +106,9 @@ ax.set_xticks(np.linspace(1, 12, 12),minor=True) ## #目盛りの設定
 ax.set_yticks(np.linspace(-400,100,50),minor=True) ####
 ax.set_xlim(1,12.9)
 ax.legend(fontsize=15)
-plt.show()
+#plt.show()
 #print(os.getcwd())
-#plt.savefig('wtsurf2')
+plt.savefig('wtsurf2')
 ###############################################################################
 
 #Setting for graph
@@ -146,6 +146,6 @@ ax.set_xticks(np.linspace(1, 12, 12),minor=True) ## #目盛りの設定
 ax.set_yticks(np.linspace(12,20,9),minor=True) ####
 ax.set_xlim(1,12.9)
 ax.legend(fontsize=15)
-plt.show()
+#plt.show()
 #print(os.getcwd())
-#plt.savefig('TBTWCtempareture')
+plt.savefig('TBTWCtempareture')
