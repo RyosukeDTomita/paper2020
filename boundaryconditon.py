@@ -25,8 +25,6 @@ WB = (y1sum - WA*sinsum)/12
 print(WA,WB) 
 
 #plot
-fig = plt.figure(figsize = (8,5)) ##
-ax = fig.add_subplot(111)
 plt.rcParams['font.family'] = 'Times New Roman' # font familyの設定
 plt.rcParams['mathtext.fontset'] = 'stix' # math fontの設定
 plt.rcParams["font.size"] =15 # 全体のフォントサイズが変更されます。
@@ -44,6 +42,8 @@ plt.rcParams["legend.handlelength"] = 1 # 凡例の線の長さを調節
 plt.rcParams["legend.handletextpad"] = 2. # 凡例の線と凡例のアイコンの距離
 plt.rcParams["legend.markerscale"] = 1 # 凡例の点がある場合のmarker scale
 #
+fig = plt.figure(figsize = (8,5)) ##
+ax = fig.add_subplot(111)
 ax.plot(x, y1,marker='.', markersize=10, markeredgewidth=1., markeredgecolor='k', label='TotalTWC',color='b') ##
 #ax.plot(x,WA*sin + WB ,marker='.', markersize=10, markeredgewidth=1., markeredgecolor='k', label='CWfit',color='g',linestyle="dashdot")
 ax.set_xticks(np.linspace(0, 12, 13),minor=True) ## #目盛りの設定
@@ -60,8 +60,6 @@ plt.savefig('sv2')
 ###############################################################################
 #Net heat flux
 #Setting for graph
-fig = plt.figure(figsize = (11,7)) ##
-ax = fig.add_subplot(111)
 plt.rcParams['font.family'] = 'Times New Roman' # font familyの設定
 plt.rcParams['mathtext.fontset'] = 'stix' # math fontの設定
 plt.rcParams["font.size"] =15 # 全体のフォントサイズが変更されます。
@@ -78,7 +76,8 @@ plt.rcParams["legend.edgecolor"] = 'gray' # edgeの色を変更
 plt.rcParams["legend.handlelength"] = 1 # 凡例の線の長さを調節
 plt.rcParams["legend.handletextpad"] = 2. # 凡例の線と凡例のアイコンの距離
 plt.rcParams["legend.markerscale"] = 1 # 凡例の点がある場合のmarker scale
-
+fig = plt.figure(figsize = (11,7)) ##
+ax = fig.add_subplot(111)
 #create continuous data
 t = np.arange(1,13,0.1)
 y1 = -100 + 200 *np.sin((2*pi*t/12) - pi/2)
@@ -111,8 +110,6 @@ plt.savefig('wtsurf2')
 ###############################################################################
 #Tsushima Strait temperature
 #Setting for graph
-fig = plt.figure(figsize = (8,5)) ##
-ax = fig.add_subplot(111)
 plt.rcParams['font.family'] = 'Times New Roman' # font familyの設定
 plt.rcParams['mathtext.fontset'] = 'stix' # math fontの設定
 plt.rcParams["font.size"] =15 # 全体のフォントサイズが変更されます。
@@ -129,7 +126,8 @@ plt.rcParams["legend.edgecolor"] = 'gray' # edgeの色を変更
 plt.rcParams["legend.handlelength"] = 1 # 凡例の線の長さを調節
 plt.rcParams["legend.handletextpad"] = 2. # 凡例の線と凡例のアイコンの距離
 plt.rcParams["legend.markerscale"] = 1 # 凡例の点がある場合のmarker scale
-
+fig = plt.figure(figsize = (8,5)) ##
+ax = fig.add_subplot(111)
 #create continuous data
 t = np.arange(1,13.0,0.1)
 y1 = 16 + 3.0*np.sin((2*pi*t/12) - pi)
