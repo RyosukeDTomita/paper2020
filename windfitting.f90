@@ -1,6 +1,6 @@
 program windfitting
     implicit none
-    integer :: m,la,lo,a,la2,lo2
+    integer :: m,la,lo,a,la2,lo2,number0
     real :: pi,theta,zerolat,zerolong,zerolat75,zerolong75,d,d2,dd,dd2
     real :: gridlat,gridlong
     real,dimension(416017)lat,long,ew,ns,z,ang,zv
@@ -38,6 +38,7 @@ program windfitting
 !  /      *--------------------
 ! /       ↑
 ! (zerolat,zerolong)
+!****************************************
 !-------read file-------
 do m = 1,12,1
     write(*,*)m,pi
@@ -66,5 +67,36 @@ do m = 1,12,1
         do la = 1,75,1
             do lo = 1,115,1
                 do a = 1,416017,1
-                       zv(a)=(lat(a)-la*10)**2+(long(a)-lo*10)**2!calculate distance
+                    number0 = 0
                 end do
+                do a = 1,416017,1
+                    zv(a)=(lat(a)-la*10)**2+(long(a)-lo*10)**2!calculate distance
+                    if (zv(a)>0) then
+                        sumew(la,lo)=sumew(la,lo)+ew(a)*exp(-zv(a))
+                        sumns(la,lo)=sumns(la,lo)+ns(a)*exp(-zv(a))   
+                        sumang(la,lo)=sumang(la,lo)+ang(a)*exp(-zv(a))
+                        sumz(la,lo)=sumz(la,lo)+z(a)*exp(-zv(a))
+                        number0 = number0 + 1
+                    end if
+                end do
+            end do
+        end do
+        do la = 1,75,1
+            do lo = 1,115,1
+                aveew(la,lo)=sumew(la,lo)/number0(la,lo)↲
+                avens(la,lo)=sumns(la,lo)/number0(la,lo)↲
+                avez(la,lo)=sumz(la,lo)/number0(la,lo)↲
+                aveang(la,lo)=sumang(la,lo)/number0(la,lo)↲
+            end do
+        end do
+        open(111,file=outfile)↲
+        do la = 1,75,1↲
+            do lo = 1,115,1↲
+                write(111,1001)la,lo,aveew(la,lo),avens(la,lo),aveang(la,lo),aveang(la,lo)
+1001            format(6F9.3)
+            end do
+        end do
+        close(111)
+        close(10)
+    end do
+endprogram windfitting
