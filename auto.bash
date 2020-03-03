@@ -8,7 +8,8 @@ starttimes=$(date +'%S')
 starttimej=$(date +'%j')
 #execute job
 #dclfrt copyr2.f && ./a.out && python notify.py && python frito.py 
-dclfrt ito.f && ./a.out && python notify.py && python frito.py 
+#dclfrt ito.f && ./a.out && python notify.py && python frito.py 
+dclfrt windfitting.f90 && ./a.out
 #
 #output how long does it take to execute jobs
 endtimeh=$(date +'%H')
