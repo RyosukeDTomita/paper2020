@@ -71,7 +71,7 @@ do m = 1,12,1
                 number0 = 0
             end do
             do a = 1,416017,1
-                zv(a)=(lat(a)-la*10)**2+(long(a)-lo*10)**2!calculate distance
+                zv(a)=((lat(a)-la*10)**2+(long(a)-lo*10)**2)**0.5!calculate distance
                 if (zv(a)>0) then
                     sumew(la,lo)=sumew(la,lo)+ew(a)/zv(a)!*exp(-zv(a))
                     sumns(la,lo)=sumns(la,lo)+ns(a)/zv(a)!*exp(-zv(a))   
