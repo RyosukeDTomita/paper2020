@@ -5,7 +5,7 @@ program windfitting
     real :: gridlat,gridlong,c,c2,xd,yd
     real,dimension(416017) :: lat,long,ew,ns,z,ang,zv
     real,dimension(416017) :: latc,longc
-    real,dimension(75,115) :: sumew,sumns,sumang,sumz,aveew,avens,aveang,avez
+    real,dimension(75,115) :: sumew,sumns,sumang,sumz,aveew,avens,aveang,avez,sumzv
     character*120 namein,nameout,path,readfile,outfile,path2
     path = '/home3/tomita/tomitasoturon2020/JRA55/Yearly/'
     path2 = '/home3/tomita/tomitasoturon2020/JRA55/fit/'
@@ -49,6 +49,7 @@ do m = 1,12,1
             sumns(la,lo)=0.e0   
             sumang(la,lo)=0.e0   
             sumz(la,lo)=0.e0   
+            sumzv(la,lo)=0.e0
         end do     
     end do
     write(namein(1:2),'(I2.2)')m
@@ -73,11 +74,12 @@ do m = 1,12,1
             end do
             do a = 1,416017,1
                 zv(a)=((lat(a)-la*10)**2+(long(a)-lo*10)**2)**0.5!calculate distance
+                sumzv(la,lo)=sumzv(la,lo)+zv(a)
                 if (zv(a)>0) then
-                    sumew(la,lo)=sumew(la,lo)+ew(a)*zv(a)/sum(zv(a))
-                    sumns(la,lo)=sumns(la,lo)+ns(a)*zv(a)/sum(zv(a))
-                    sumang(la,lo)=sumang(la,lo)+ang(a)*zv(a)/sum(zv(a))
-                    sumz(la,lo)=sumz(la,lo)+z(a)*zv(a)/sum(zv(a))
+                    sumew(la,lo)=sumew(la,lo)+ew(a)*zv(a)/sumzv(la,lo)
+                    sumns(la,lo)=sumns(la,lo)+ns(a)*zv(a)/sumzv(la,lo)
+                    sumang(la,lo)=sumang(la,lo)+ang(a)*zv(a)/sumzv(la,lo)
+                    sumz(la,lo)=sumz(la,lo)+z(a)*zv(a)/sumzv(la,lo)
                     !number0 = number0 + 1
                 end if
             end do
