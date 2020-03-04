@@ -4,6 +4,7 @@ program windfitting
     real :: pi,theta,zerolat,zerolong,zerolat75,zerolong75,d,d2,dd,dd2
     real :: gridlat,gridlong,c,c2,xd,yd
     real,dimension(416017) :: lat,long,ew,ns,z,ang,zv
+    real,dimension(416017) :: latc,longc
     real,dimension(75,115) :: sumew,sumns,sumang,sumz,aveew,avens,aveang,avez
     character*120 namein,nameout,path,readfile,outfile,path2
     path = '/home3/tomita/tomitasoturon2020/JRA55/Yearly/'
@@ -58,12 +59,12 @@ do m = 1,12,1
     do a = 1,416017,1
         read(10,1000)lat(a),long(a),ew(a),ns(a),z(a),ang(a)
 1000    format(6F9.3)
-        long(a)=cos(theta)*long(a)-sin(theta)*lat(a)!spin theta
-        lat(a)=sin(theta)*long(a)+cos(theta)*lat(a)
-        long(a)=long(a)-zerolong
-        lat(a)=lat(a)-zerolat
-        long(a)=long(a)*gridlong
-        lat(a)=lat(a)*gridlat
+        longc(a)=cos(theta)*long(a)-sin(theta)*lat(a)!spin theta
+        latc(a)=sin(theta)*long(a)+cos(theta)*lat(a)
+        longc(a)=longc(a)-zerolong
+        latc(a)=latc(a)-zerolat
+        longc(a)=longc(a)*gridlong
+        latc(a)=latc(a)*gridlat
     end do
     do la = 1,75,1
         do lo = 1,115,1
@@ -73,11 +74,11 @@ do m = 1,12,1
             do a = 1,416017,1
                 zv(a)=((lat(a)-la*10)**2+(long(a)-lo*10)**2)**0.5!calculate distance
                 if (zv(a)>0) then
-                    sumew(la,lo)=sumew(la,lo)+ew(a)/zv(a)!*exp(-zv(a))
-                    sumns(la,lo)=sumns(la,lo)+ns(a)/zv(a)!*exp(-zv(a))   
-                    sumang(la,lo)=sumang(la,lo)+ang(a)/zv(a)!*exp(-zv(a))
-                    sumz(la,lo)=sumz(la,lo)+z(a)/zv(a)!*exp(-zv(a))
-                    number0 = number0 + 1
+                    sumew(la,lo)=sumew(la,lo)+ew(a)*zv(a)/sum(zv(a))
+                    sumns(la,lo)=sumns(la,lo)+ns(a)*zv(a)/sum(zv(a))
+                    sumang(la,lo)=sumang(la,lo)+ang(a)*zv(a)/sum(zv(a))
+                    sumz(la,lo)=sumz(la,lo)+z(a)*zv(a)/sum(zv(a))
+                    !number0 = number0 + 1
                 end if
             end do
         end do
