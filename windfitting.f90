@@ -75,22 +75,20 @@ do m = 1,12,1
             do a = 1,416017,1
                 zv(a)=((lat(a)-la*10)**2+(long(a)-lo*10)**2)**0.5!calculate distance
                 sumzv(la,lo)=sumzv(la,lo)+zv(a)
-                if (zv(a)>0) then
-                    sumew(la,lo)=sumew(la,lo)+ew(a)*zv(a)/sumzv(la,lo)
-                    sumns(la,lo)=sumns(la,lo)+ns(a)*zv(a)/sumzv(la,lo)
-                    sumang(la,lo)=sumang(la,lo)+ang(a)*zv(a)/sumzv(la,lo)
-                    sumz(la,lo)=sumz(la,lo)+z(a)*zv(a)/sumzv(la,lo)
+                sumew(la,lo)=sumew(la,lo)+ew(a)*zv(a)
+                sumns(la,lo)=sumns(la,lo)+ns(a)*zv(a)
+                sumang(la,lo)=sumang(la,lo)+ang(a)*zv(a)
+                sumz(la,lo)=sumz(la,lo)+z(a)*zv(a)
                     !number0 = number0 + 1
-                end if
             end do
         end do
     end do
     do la = 1,75,1
         do lo = 1,115,1
-            aveew(la,lo)=sumew(la,lo)!/number0
-            avens(la,lo)=sumns(la,lo)!/number0
-            avez(la,lo)=sumz(la,lo)!/number0
-            aveang(la,lo)=sumang(la,lo)!/number0
+            aveew(la,lo)=sumew(la,lo)/sumzv(la,lo)
+            avens(la,lo)=sumns(la,lo)/sumzv(la,lo)
+            avez(la,lo)=sumz(la,lo)/sumzv(la,lo)
+            aveang(la,lo)=sumang(la,lo)/sumzv(la,lo)
         end do
     end do
     open(111,file=outfile)
