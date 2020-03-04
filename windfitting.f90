@@ -96,7 +96,7 @@ do m = 1,12,1
     open(111,file=outfile)
     do la = 1,75,1
         do lo = 1,115,1
-            write(111,*)la,lo,aveew(la,lo),avens(la,lo),aveang(la,lo),aveang(la,lo)
+            write(111,*)la,lo,aveew(la,lo),avens(la,lo),avez(la,lo),aveang(la,lo)
 !1001        format(6F9.3)
         end do
     end do
