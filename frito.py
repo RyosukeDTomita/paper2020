@@ -10,7 +10,9 @@ from matplotlib.colors import Normalize
 #import matplotlib.font_manager as fon
 #del fon.weight_dict['roman']
 #matplotlib.font_manager._rebuild()
-path = '/home3/tomita/model/resul2/'
+path1= '/home3/tomita/tomitasoturon2020/model/'
+print('Type directory name')
+path = os.path.join(path1 + input()+'/')
 plt.rcParams['font.family'] = 'Times New Roman' # font family
 plt.rcParams['mathtext.fontset'] = 'stix'
 #for i in range(14400,18001,30):
