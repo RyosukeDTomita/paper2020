@@ -34,7 +34,6 @@ with open('energ.csv','w') as f:
     tbp = np.zeros(2400)###
     tbp2 = np.zeros(2400)
     for i in range (10,24001,10):###
-        #print(i)
         
         file = os.path.join('BP222_0' + str(i).zfill(5) + '_00_00')
 
@@ -45,7 +44,6 @@ with open('energ.csv','w') as f:
         usecols=[0,1,2,4,5,6,7,8],names=\
                            ['i','j','tb','elb','p','uab','vab','d'])
         d = data.loc[:,'d']
-        #elb = data.loc[:,'elb']
         tb = data.loc[:,'tb']
         p = data.loc[:,'p']
         U = data.loc[:,'uab']
@@ -66,10 +64,6 @@ with open('energ.csv','w') as f:
         tb2 = tb[[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],1]
         sv = 0.01 * d1 *z1
         enegy = 1000* 10000 * 0.5 * 10000 * d * z**2
-        #i = i.values.reshape(75,115)
-        #j = j.values.reshape(75,115)
-        #print(i[[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],1])
-        #print(j[[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],1])
         sumenegy = enegy.sum(axis=None)/8625
         sumsvw = sv.sum(axis =0)
         sumtb = np.mean(tb2,axis = 0)
@@ -91,26 +85,10 @@ data = pd.Series(svp,t)
 #plt.style.use('ggplot')
 
 #**************************Create graph************************************
+#Sv
 fig = plt.figure(figsize = (8,5))
-#plt.rcParams['font.family'] = 'Times New Roman' # font familyの設定
-#plt.rcParams['mathtext.fontset'] = 'stix' # math fontの設定
-#plt.rcParams["font.size"] =15 # 全体のフォントサイズが変更されます。
-#plt.rcParams['xtick.labelsize'] = 9 # 軸だけ変更されます。
-#plt.rcParams['ytick.labelsize'] = 24 # 軸だけ変更されます
-#plt.rcParams['xtick.direction'] = 'in' # x軸の向きを内側に設定（ggplotだと変化しない） 
-#plt.rcParams['ytick.direction'] = 'in'
-#plt.rcParams['axes.linewidth'] = 0.5 # 軸の太さ
-#plt.rcParams['axes.grid'] = True # グリット線の設定
-#plt.rcParams["legend.borderaxespad"] = 0. #凡例の箱をの位置をグラフに合わせて左に寄せる
-#plt.rcParams["legend.fancybox"] = False # 丸角
-#plt.rcParams["legend.framealpha"] = 1 # 透明度の指定、0で塗りつぶしなし
-#plt.rcParams["legend.edgecolor"] = 'gray' # edgeの色を変更
-#plt.rcParams["legend.handlelength"] = 1 # 凡例の線の長さを調節
-#plt.rcParams["legend.handletextpad"] = 2. # 凡例の線と凡例のアイコンの距離
-#plt.rcParams["legend.markerscale"] = 1 # 凡例の点がある場合のmarker scale
 ax = fig.add_subplot(111)
 ax.plot(data,marker='.', markersize=10, markeredgewidth=1., markeredgecolor='k', label = 'Sv',color = 'b')
-#ax.set_title(r"$Sv$")
 ax.set_xlabel(r"$day$")
 ax.set_ylabel(r"$Sv$")
 ax.set_xticks(np.linspace(10,24000,240),minor=True)###
@@ -119,8 +97,9 @@ ax.set_xlim(3600,7200)
 ax.legend()
 figure = os.path.join(path + 'testSv')
 plt.savefig(figure)
-#plt.subplots_adjust(bottom=0.2) # 下余白調整(default=0.1)
-#
+#************************************************
+
+#energy
 data = pd.Series(enegyp,t)
 fig = plt.figure(figsize = (8,5))
 ax = fig.add_subplot(111)
@@ -137,10 +116,11 @@ plt.savefig(figure)
 ax.set_xlim(3600,7200)
 figure2 = os.path.join(figure + 'big')
 plt.savefig(figure2)
-#
+#**********************************************
+
+#velocity average
 t = np.arange(10,24001,10) ###
 data = pd.Series(zp,t)
-#plt.style.use('ggplot')
 fig = plt.figure(figsize = (8,5))
 ax = fig.add_subplot(111)
 ax.plot(data,label = 'z',color = 'b')
@@ -148,7 +128,6 @@ ax.set_title('z')
 ax.set_xlabel('day')
 ax.set_ylabel('z')
 ax.set_xticks(np.linspace(10,24001,240),minor=True)###
-#ax.set_yticks(np.linspace(0,2.5,25),minor=True)
 ax.set_xlim(10,24000)
 ax.legend()
 figure = os.path.join(path + 'testz')
@@ -156,7 +135,9 @@ plt.savefig(figure)
 ax.set_xlim(10800,18000)
 figure2 = os.path.join(figure + 'big')
 plt.savefig(figure2)
-#
+#****************************************
+
+# 1layer depth
 t = np.arange(10,24001,10) ###
 data = pd.Series(dp,t)
 #plt.style.use('ggplot')
@@ -175,7 +156,9 @@ plt.savefig(figure)
 ax.set_xlim(3600,7200)
 figure2 = os.path.join(figure + 'big')
 plt.savefig(figure2)
-#tb
+#***********************************************
+
+#sea surface temparature average
 data = pd.Series(tbp,t)
 fig = plt.figure(figsize = (8,5))
 ax = fig.add_subplot(111)
@@ -192,7 +175,9 @@ plt.savefig(figure)
 ax.set_xlim(3600,7200)
 figure2 = os.path.join(figure + 'big')
 plt.savefig(figure2)
-#tb2
+#***************************************************
+
+#sea surface temperature (Tsushima Strait)
 data = pd.Series(tbp2,t)
 fig = plt.figure(figsize = (8,5))
 ax = fig.add_subplot(111)
