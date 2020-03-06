@@ -1,4 +1,5 @@
 #program diffenrence ot d
+#--------module-------
 import os 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -11,18 +12,18 @@ from matplotlib.colors import Normalize
 #import matplotlib.font_manager as fon
 #del fon.weight_dict['roman']
 #matplotlib.font_manager._rebuild()
-path = '/home/tomita/model/15nwtc/'
-path2 = '/home/tomita/model/wtzonb/'
+#---------directory path----------
+path = '/home3/tomita/tomitasoturon2020/model/soturonwtave/'#DO NOT CHANGE
+path2 = '/home3/tomita/tomitasoturon2020/model\
+/soturonwtintensifiedzonedouble/'
 plt.rcParams['font.family'] = 'Times New Roman' # font family
 plt.rcParams['mathtext.fontset'] = 'stix'
 
 for i in range(14670,15030,30):
-#for i in range(17910,18270,30):
     fig,ax = plt.subplots(figsize = (12,7))
-#make CSV
+#convert to CSV
     fname_in = 'BP222_0' + str(i).zfill(5) + '_00_00'
     fname_out = 'c{}.csv'.format(''.join(fname_in))
-    #fname_in = os.path.join(path + fname_in)
     os.chdir(path)
     with open(fname_in, newline='') as fin,  \
            open(fname_out, mode='w', newline='') as fout:
@@ -31,7 +32,7 @@ for i in range(14670,15030,30):
         writer = csv.writer(fout)
 
         writer.writerows(reader)
-#readfile
+#-------readfile-------
     file1 = os.path.join(path + 'cBP222_0' + str(i).zfill(5) + '_00_00.csv')
     data = pd.read_csv(file1,header = None,\
                        usecols=[2,5,6,7,8],names=['tb','p','uab','vab','d'])
@@ -56,7 +57,6 @@ for i in range(14670,15030,30):
     U = U.values.reshape(75,115)
     V = V.values.reshape(75,115)
     d = d.values.reshape(75,115)
-#read the others
 #warning u havta convert txt to csv first.(Use frito.py)
     file2 = os.path.join(path2 + 'cBP222_0' + str(i).zfill(5) + '_00_00.csv')
     data2 = pd.read_csv(file2,header = None,\

@@ -1,3 +1,5 @@
+#program boundarycondition.py
+#-------module-------
 import os
 import pandas as pd
 import numpy as np
@@ -7,6 +9,7 @@ import math
 pi = math.pi
 #del fon.weight_dict['roman']
 #matplotlib.font_manager._rebuild()
+#--------draw graph-------
 #sv
 N = 10 ##
 x = np.arange(1,13.1,1) ##
@@ -57,7 +60,8 @@ ax.set_xticks(np.linspace(1, 12,12)) ## #グリット線の間隔
 ax.legend(ncol=2, bbox_to_anchor=(0., 1.02, 1., 0.102), loc=3) #ncolで同じ行に置く凡例の数　(内は左からx,yの位置,横x縦の箱)
 #plt.show()
 plt.savefig('sv2')
-###############################################################################
+#*************************************************
+
 #Net heat flux
 #Setting for graph
 plt.rcParams['font.family'] = 'Times New Roman' # font familyの設定
@@ -107,7 +111,8 @@ ax.legend(fontsize=15)
 #plt.show()
 #print(os.getcwd())
 plt.savefig('wtsurf2')
-###############################################################################
+#**********************************************
+
 #Tsushima Strait temperature
 #Setting for graph
 plt.rcParams['font.family'] = 'Times New Roman' # font familyの設定
@@ -144,5 +149,4 @@ ax.set_yticks(np.linspace(12,20,9),minor=True) ####
 ax.set_xlim(1,12.9)
 ax.legend(fontsize=15)
 #plt.show()
-#print(os.getcwd())
 plt.savefig('TBTWCtempareture')

@@ -1,3 +1,5 @@
+#program frito.py
+#-------module-------
 import os 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -10,18 +12,16 @@ from matplotlib.colors import Normalize
 #import matplotlib.font_manager as fon
 #del fon.weight_dict['roman']
 #matplotlib.font_manager._rebuild()
+#-------path setting-------
 path1= '/home3/tomita/tomitasoturon2020/model/'
-print('Type directory name')
-path = os.path.join(path1 + input()+'/')
+print('Type the directory name')
+path = os.path.join(path1 + input()+'/')#stdin
 plt.rcParams['font.family'] = 'Times New Roman' # font family
 plt.rcParams['mathtext.fontset'] = 'stix'
-#for i in range(14400,18001,30):
 for i in range(14400,15120,30):
-#for i in range(17640,18360,30):
-#make CSV
+#convert to CSV
     fname_in = 'BP222_0' + str(i).zfill(5) + '_00_00'
     fname_out = 'c{}.csv'.format(''.join(fname_in))
-    #fname_in = os.path.join(path + fname_in)
     os.chdir(path)
     with open(fname_in, newline='') as fin,  \
            open(fname_out, mode='w', newline='') as fout:
@@ -30,17 +30,14 @@ for i in range(14400,15120,30):
         writer = csv.writer(fout)
 
         writer.writerows(reader)
-#readfile
+#-------read file-------
     fig,ax = plt.subplots(figsize = (12,7))
-    file = os.path.join(path + 'cBP222_0' + str(i).zfill(5) + '_00_00.csv')
-    data = pd.read_csv(file,header = None,\
+    file1 = os.path.join(path + 'cBP222_0' + str(i).zfill(5) + '_00_00.csv')
+    data = pd.read_csv(file1,header = None,\
                        usecols=[2,5,6,7,8],names=['tb','p','uab','vab','d'])
     x = np.arange(1,1150.1,10)
     y = np.arange(1,750.1,10)
     X, Y = np.meshgrid(x,y)
-    #p = data.loc[:,'p'].values.reshape(75,115)
-    #U = data.loc[:,'uab'].values.reshape(75,115)
-    #V = data.loc[:,'vab'].values.reshape(75,115)
     tb = data.loc[:,'tb']
     p = data.loc[:,'p']
     U = data.loc[:,'uab']
@@ -270,15 +267,6 @@ for i in range(14400,15120,30):
         title = r"$November$"
     elif (i/30)%12 ==11:
         title = r"$December$"
-    #if i == 8640:
-    #    title = r"$Winter$"
-    #elif i == 22050:
-    #    title = r"$Spring$"
-    #elif i == 22140:
-    #    title = r"$Summer$"
-    #elif i == 22230:
-    #    title = r"$Autumn$"
-   #title = str(i)
     ax.set_title(title,fontsize=24)
     ax.set_xlim(0,500)
     ax.set_ylim(0,500)
