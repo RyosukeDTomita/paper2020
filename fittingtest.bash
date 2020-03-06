@@ -25,7 +25,7 @@ gmt psxy $tmp -R$region -J$proj -Sv$vector -Gblack -K -V > $psfile
 #    gmt psxy $tmp -R$region -J$proj -Sv/0.1/0.1/0.1 -Gblack -K -V > $psfile↲
 #    gmt pscoast -R$region -J$proj -Dh -Ggray -Wthin,black -K -V -O >> $psfile↲
 gmt psbasemap -R$region -J$proj -B$frame -K -V -O >> $psfile
-gmt psxy $samplefile -R$region -J$proj -Sv$vector -Gblue -O -V >> $psfile↲
+gmt psxy $samplefile -R$region -J$proj -Sv$vector -Gblue -O -V >> $psfile
 convert -density 300x300 $psfile $confile
 done
 #
