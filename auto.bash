@@ -1,4 +1,3 @@
-
 #speedtest
 #starttime
 starttime=$(date)
