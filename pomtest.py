@@ -8,10 +8,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.font_manager as fon
-path = '/home/tomita/model/wtpeak6to7/'
+path = '/home3/tomita/tomitasoturon2020/model/soturonwtave/'
 #create matrix
 #It makes matrixs which can convert topography area's data '0'
-example = '/home/tomita/model/def0109/cBP222_022290_00_00.csv'
+example = '/home3/tomita/tomitasoturon2020/model\
+/example/cBP222_022900_00_00.csv'
 ff = pd.read_csv(example,header = None,usecols = [2],names = ['tb'])
 tb = ff.loc[:,'tb']
 tb = tb.values.reshape(75,115)
@@ -21,7 +22,6 @@ for a in range(0,115,1):
         if zerof[b,a] != 0.0:
             zerof[b,a] = 1.0
 #print(zerof)
-
 ##############################################################################
 #**************************read data and Calculate*************************
 count =int(0)
