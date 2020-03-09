@@ -13,6 +13,7 @@
     https://qiita.com/aoyahashizume/items/13848b013daa18f6461b より
 1. wtspatially.py　数値モデルに与える海面冷却の空間分布を図示する。
 1. japanmap.bash GMTで日本地図を描く。
+1. frito.bash frito.pyと同じ図をGMTによって書く。
 
 ###JRA55(日本海周辺の風のデータセット関連)
 1. avesample.f JRA55の風のデータを月平均データに直す。
