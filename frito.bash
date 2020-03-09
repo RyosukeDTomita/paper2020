@@ -26,10 +26,10 @@ grdfile3="${tmpfile3}.grd"
 #
 #extract record number and free-air anomaly using awk
 #
-awk 'NR%30==0 {print $1,$2,$3,$4}' $infile >$tmpfile1
+awk 'NR%30==0 {print $1,$2,$7,$8}' $infile >$tmpfile1
 awk '{print $1,$2,$6}' $infile >$tmpfile2
-awk '{print $1,$2,$8}' $infile >$tmpfile3
-awk '{print $1,$2,$8}' $infile >$tmpfile4
+awk '{print $1,$2,$3}' $infile >$tmpfile3
+awk '{print $1,$2,$9}' $infile >$tmpfile4
 #
 makecpt -Crainbow -T0/24/2 -Z > rb.cpt
 xyz2grd $tmpfile2 -G$grdfile1 -I1 -R$region
