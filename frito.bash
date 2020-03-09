@@ -19,20 +19,22 @@ infile="${path}${directry}BP222_0${DAY}_00_00"
 tmpfile1="${path}${directry}tmp1"
 tmpfile2="${path}${directry}tmp2"
 tmpfile3="${path}${directry}tmp3"
+tmpfile4="${path}${directry}tmp4"
 grdfile1="${tmpfile1}.grd"
 grdfile2="${tmpfile2}.grd"
 grdfile3="${tmpfile3}.grd"
 #
 #extract record number and free-air anomaly using awk
 #
-awk '{print $1,$2,$3,$4}' $infile >$tmpfile1
+awk 'NR%30==0 {print $1,$2,$3,$4}' $infile >$tmpfile1
 awk '{print $1,$2,$6}' $infile >$tmpfile2
 awk '{print $1,$2,$8}' $infile >$tmpfile3
+awk '{print $1,$2,$8}' $infile >$tmpfile4
 #
 makecpt -Crainbow -T0/24/2 -Z > rb.cpt
-xyz2grd $tmpfile1 -G$grdfile1 -I1 -R$region
-xyz2grd $tmpfile2 -G$grdfile2 -I1 -R$region
-xyz2grd $tmpfile3 -G$grdfile3 -I1 -R$region
+xyz2grd $tmpfile2 -G$grdfile1 -I1 -R$region
+xyz2grd $tmpfile3 -G$grdfile2 -I1 -R$region
+xyz2grd $tmpfile4 -G$grdfile3 -I1 -R$region
 #
 gmt grdimage $grdfile1 -J$proj -Crb.cpt -B$frame  -K -V > $psfile1
 gmt psxy $tmpfile1 -R$region -J$proj -Sv$vector -Gblack -K -V -O >> $psfile1
