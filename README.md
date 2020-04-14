@@ -1,5 +1,5 @@
 # 日本海における対馬暖流第３分枝の経年変化
-![対馬暖流](https://github.com/RyosukeDTomita/paper2020/blob/master/art/japansea.png"日本海")
+![対馬暖流](https://github.com/RyosukeDTomita/paper2020/blob/master/art/japansea.png "日本海")
 ## 概要
 - 本プログラムは卒業研究において作成したものの一部を抜粋したものである。
 - 作成した図のサンプルは/artに格納した。
