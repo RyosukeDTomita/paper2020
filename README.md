@@ -1,7 +1,7 @@
 # 日本海における対馬暖流第３分枝の経年変化
 ![対馬暖流](https://github.com/RyosukeDTomita/paper2020/blob/master/art/japansea.png "日本海")
 ## 研究内容
-- 対馬暖流第三分枝(上図参照)の流路が経年変化する現象について、海洋大循環モデルの一つである[POM](http://www.ccpo.odu.edu/POMWEB/index.html)を改造した1.5層モデルを用いた物理的メカニズムを明らかにする。POMについては[こちら](https://github.com/RyosukeDTomita/paper2020/wiki/%E7%A0%94%E7%A9%B6%E6%A6%82%E8%A6%81 "POM")研究内容については本ページの[Wiki](https://github.com/RyosukeDTomita/paper2020/wiki/%E7%A0%94%E7%A9%B6%E6%A6%82%E8%A6%81)をご覧ください。
+- 対馬暖流第三分枝(上図参照)の流路が経年変化する現象について、海洋大循環モデルの一つである[POM](http://www.ccpo.odu.edu/POMWEB/index.html)を改造した1.5層モデルを用いた物理的メカニズムを明らかにする。研究内容については本ページの[Wiki](https://github.com/RyosukeDTomita/paper2020/wiki/%E7%A0%94%E7%A9%B6%E6%A6%82%E8%A6%81 "研究概要")をご覧ください。
 ******
 ## 本リポジトリの概要
 - 2020年2月末に提出した卒業論文を執筆するにあたり、行った数値モデルの解析を目的としたプログラムが主である。。
