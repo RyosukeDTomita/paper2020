@@ -12,17 +12,18 @@ from matplotlib.colors import Normalize
 #import matplotlib.font_manager as fon
 #del fon.weight_dict['roman']
 #matplotlib.font_manager._rebuild()
+
 #-------path setting-------
-path1= '/home3/tomita/tomitasoturon2020/model/'
+all_result_dir = '/home3/tomita/tomitasoturon2020/model/'
 print('Type the directory name')
-path = os.path.join(path1 + input()+'/')#stdin
+data_path = os.path.join(all_result_dir + input()+'/')#stdin
 plt.rcParams['font.family'] = 'Times New Roman' # font family
 plt.rcParams['mathtext.fontset'] = 'stix'
 for i in range(14400,15120,30):
 #convert to CSV
     fname_in = 'BP222_0' + str(i).zfill(5) + '_00_00'
     fname_out = 'c{}.csv'.format(''.join(fname_in))
-    os.chdir(path)
+    os.chdir(data_path)
     with open(fname_in, newline='') as fin,  \
            open(fname_out, mode='w', newline='') as fout:
 
@@ -30,9 +31,10 @@ for i in range(14400,15120,30):
         writer = csv.writer(fout)
 
         writer.writerows(reader)
+
 #-------read file-------
     fig,ax = plt.subplots(figsize = (12,7))
-    file1 = os.path.join(path + 'cBP222_0' + str(i).zfill(5) + '_00_00.csv')
+    file1 = os.path.join(data_path+ 'cBP222_0' + str(i).zfill(5) + '_00_00.csv')
     data = pd.read_csv(file1,header = None,\
                        usecols=[2,5,6,7,8],names=['tb','p','uab','vab','d'])
     x = np.arange(1,1150.1,10)
@@ -51,17 +53,20 @@ for i in range(14400,15120,30):
             V[t] = np.nan
             d[t] = np.nan
             tb[t] = np.nan
-    tb = tb.values.reshape(75,115)        
+    tb = tb.values.reshape(75,115)
     p = p.values.reshape(75,115)
     U = U.values.reshape(75,115)
     V = V.values.reshape(75,115)
     d = d.values.reshape(75,115)
-    #gridimage
+#--------------------------------
+
+    # vector and pressure
+    ## gridimage
     plt.pcolormesh(X, Y, p, cmap = 'rainbow',\
                    norm=Normalize(vmin=500,vmax=1500))
     pp = plt.colorbar(orientation='vertical')
     pp.set_label(r"$Pressure$",fontsize=24)
-    #grdcontour
+    ## grdcontour
     cont=plt.contour(X, Y, p, 8,vmin=150,vmax=200,colors=['black'])
     cont.clabel(fmt='%1.1f', fontsize=12)
     for c in range(1,116,1):
@@ -78,7 +83,7 @@ for i in range(14400,15120,30):
     U2 = np.append(U,0.05)
     V2 = np.append(V,0.0)
     ax.quiver(X2,Y2,U2,V2,angles='uv',scale_units='xy',scale=0.001)
-    #label
+    ##label
     
     plt.xlabel(r"$x(km)$",fontsize=24)
     plt.ylabel(r"$y(km)$",fontsize=24)
@@ -108,18 +113,19 @@ for i in range(14400,15120,30):
         title = r"$December$"
     ax.set_title(title,fontsize=24)
     #plt.show()
-    figure = os.path.join(path + str(i) + 'v')
+    figure = os.path.join(data_path + str(i) + 'v')
     plt.savefig(figure)
+#----------------------------------------------------
 
-    #frito2
+    #Sea Water temperature
     fig,ax = plt.subplots(figsize = (12,7))
     plt.pcolormesh(X, Y, tb, cmap = 'rainbow',norm=Normalize(vmin=10,vmax=26))
     pp2 = plt.colorbar(orientation='vertical')
     pp2.set_label(r"$SST$",fontname='Arial',fontsize=24)	
-    #grdcontour
+    ## grdcontour
     cont2=plt.contour(X, Y, tb, 10,vmin=150,vmax=200,colors=['black'])
     cont2.clabel(fmt='%1.1f', fontsize=12)
-    #label
+    ## label
     plt.xlabel(r"$x(km)$",fontsize=24)
     plt.ylabel(r"$y(km)$",fontsize=24)
     if (i/30)%12 ==0:
@@ -147,11 +153,12 @@ for i in range(14400,15120,30):
     elif (i/30)%12 ==11:
         title = r"$December$"
     ax.set_title(title,fontsize=24)
-    #plt.show()
-    figure = os.path.join(path + str(i) + 'sst')
+    # plt.show()
+    figure = os.path.join(data_path + str(i) + 'sst')
     plt.savefig(figure)
+#---------------------------------------------------
 
-    #frito3
+    # Height of sea surface
     fig,ax = plt.subplots(figsize = (12,7))
     plt.pcolormesh(X, Y, d, cmap = 'rainbow',norm=Normalize(vmin=100,vmax=300))
     pp3 = plt.colorbar(orientation='vertical')
@@ -188,12 +195,12 @@ for i in range(14400,15120,30):
         title = r"$December$"
     ax.set_title(title,fontsize=24)
     #plt.show()
-    figure = os.path.join(path + str(i) + 'el')
+    figure = os.path.join(data_path + str(i) + 'el')
     plt.savefig(figure)
     
     #frbig
     fig,ax = plt.subplots(figsize = (7,7))
-    file = os.path.join(path + 'cBP222_0' + str(i).zfill(5) + '_00_00.csv')
+    file = os.path.join(data_path + 'cBP222_0' + str(i).zfill(5) + '_00_00.csv')
     data = pd.read_csv(file,header = None,\
                        usecols=[2,5,6,7],names=['tb','p','uab','vab'])
     x = np.arange(1,1150.1,10)
@@ -271,5 +278,5 @@ for i in range(14400,15120,30):
     ax.set_xlim(0,500)
     ax.set_ylim(0,500)
     #plt.show()
-    figure = os.path.join(path + str(i) + 'vbig')
+    figure = os.path.join(data_path + str(i) + 'vbig')
     plt.savefig(figure)
