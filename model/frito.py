@@ -1,4 +1,15 @@
-#program frito.py
+#######################################################################
+#
+# Name: frito.py
+#
+# Create Flow velocity distribution map, sea surface temparature contor map,height of sea surface contor map
+#
+# Usage: frito.py
+#
+# Author: Ryosuke Tomita
+# Date: 2020/03
+#######################################################################
+
 #-------module-------
 import os 
 import pandas as pd
@@ -19,8 +30,9 @@ print('Type the directory name')
 data_path = os.path.join(all_result_dir + input()+'/')#stdin
 plt.rcParams['font.family'] = 'Times New Roman' # font family
 plt.rcParams['mathtext.fontset'] = 'stix'
-for i in range(14400,15120,30):
+
 #convert to CSV
+for i in range(14400,15120,30):
     fname_in = 'BP222_0' + str(i).zfill(5) + '_00_00'
     fname_out = 'c{}.csv'.format(''.join(fname_in))
     os.chdir(data_path)
@@ -29,7 +41,6 @@ for i in range(14400,15120,30):
 
         reader = csv.reader(fin, delimiter=' ', skipinitialspace=True)
         writer = csv.writer(fout)
-
         writer.writerows(reader)
 
 #-------read file-------
@@ -45,7 +56,8 @@ for i in range(14400,15120,30):
     U = data.loc[:,'uab']
     V = data.loc[:,'vab']
     d = data.loc[:,'d']
-            #
+
+# arrange and reshape data
     for t in range(0,8625,1):
         if tb[t] == 0.0:
             p[t] = np.nan
@@ -60,7 +72,7 @@ for i in range(14400,15120,30):
     d = d.values.reshape(75,115)
 #--------------------------------
 
-    # vector and pressure
+# Create Flow velocity distribution map
     ## gridimage
     plt.pcolormesh(X, Y, p, cmap = 'rainbow',\
                    norm=Normalize(vmin=500,vmax=1500))
@@ -117,7 +129,7 @@ for i in range(14400,15120,30):
     plt.savefig(figure)
 #----------------------------------------------------
 
-    #Sea Water temperature
+    #Sea surface temperature contor map
     fig,ax = plt.subplots(figsize = (12,7))
     plt.pcolormesh(X, Y, tb, cmap = 'rainbow',norm=Normalize(vmin=10,vmax=26))
     pp2 = plt.colorbar(orientation='vertical')
@@ -158,7 +170,7 @@ for i in range(14400,15120,30):
     plt.savefig(figure)
 #---------------------------------------------------
 
-    # Height of sea surface
+    # Height of sea surface contor map
     fig,ax = plt.subplots(figsize = (12,7))
     plt.pcolormesh(X, Y, d, cmap = 'rainbow',norm=Normalize(vmin=100,vmax=300))
     pp3 = plt.colorbar(orientation='vertical')
