@@ -9,7 +9,7 @@
 ******
 ### 数値モデルの解析に用いたプログラム
 ******
-#### /model
+#### [/model](https://github.com/RyosukeDTomita/paper2020/tree/master/model)
 
     1. auto.bash             Fortran77で書かれた数値モデルのコードをコンパイルし、計算開始から、計算終了までの時間を測定するまでのシェルスクリプト。
     2. boundarycondition.py  数値モデルに与えた条件を図示する。対馬暖流の流量、対馬海峡の水温、海面の熱フラックスのグラフを描く。
